@@ -24,8 +24,8 @@ function MyApp({ Component, pageProps }) {
         cookieName="myAwesomeCookie"
         style={{ background: "#2B373B" }}
         buttonStyle={{ color: "#4e503b", fontSize: "14px" }}
-        expires={150}
-        debug
+        expires={365}  // in days
+        debug   // for development purpose. cookie consent banner pops out in every refresh
         enableDeclineButton
         flipButtons
         onAccept={(acceptedByScrolling) => {
