@@ -1,8 +1,14 @@
 import '../styles/globals.css'
 import CookieConsent, { getCookieConsentValue } from "react-cookie-consent";
 import { useEffect } from 'react';
+import Cookies from 'universal-cookie';
 
 function MyApp({ Component, pageProps }) {
+  const cookies = new Cookies();
+
+  useEffect(()=> {
+    cookies.set('myCat', 'Pacman', { path: '/' });
+  },[])
 
   // useEffect(()=> {
   //   console.log({cookieValue: getCookieConsentValue()})
@@ -23,16 +29,16 @@ function MyApp({ Component, pageProps }) {
         enableDeclineButton
         flipButtons
         onAccept={(acceptedByScrolling) => {
-          // console.log({acceptedByScrolling})
-          // console.log({cookieValue: getCookieConsentValue()})
           if (acceptedByScrolling) {
-            alert("Accept was triggered by user scrolling");
+            console.log("Accept was triggered by user scrolling");
           } else {
-            alert("Accept was triggered by clicking the Accept button");
+            console.log({cookieConsentvalue: cookies.get('myAwesomeCookie')}); 
+            console.log("Accept was triggered by clicking the Accept button");
           }
         }}
         onDecline={() => {
-          alert("nope!");
+          console.log('not setting any cookies')
+          // alert("nope!");
         }}
       >This website uses cookies to enhance the user experience.</CookieConsent>
     </>)
